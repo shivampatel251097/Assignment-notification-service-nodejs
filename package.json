@@ -1,0 +1,31 @@
+{
+  "name": "assignment-notification-service-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivampatel251097/Assignment-notification-service-nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shivampatel251097/Assignment-notification-service-nodejs/issues"
+  },
+  "homepage": "https://github.com/shivampatel251097/Assignment-notification-service-nodejs#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "node-cron": "^3.0.0",
+    "node-schedule": "^2.0.0",
+    "nodemailer": "^6.5.0",
+    "nodemailer-smtp-transport": "^2.7.4"
+  },
+  "engines": {
+    "node": "10.16.2"
+  }
+}
