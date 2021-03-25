@@ -48,6 +48,7 @@ app.post('/sendmail',(req,res)=>{
 
 app.post('/schedule',(req,res)=>{
 
+    var reqdata = req.body;
     var dateTime = req.body.dateTime;
     var datePart = dateTime.split('T')[0];
     var date = datePart.split('/')[0];
@@ -60,16 +61,42 @@ app.post('/schedule',(req,res)=>{
     var sec = timePart.split(':')[2];
     
 
-    const sheduleDate =new Date();
-    console.log("year "+year);
-    console.log("month "+month);
-    console.log("date "+date);
-    console.log("hour "+hour);
-    console.log("min "+min);
-    console.log(sheduleDate);
+    const sheduleDate =new Date(year,month,date,hour,min,sec);
+    var zoneTime = sheduleDate.toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
+    new_date = new Date(zoneTime);
+    final_date=new_date.toLocaleString()
+    // console.log("year "+year);
+    // console.log("month "+month);
+    // console.log("date "+date);
+    // console.log("hour "+hour);
+    // console.log("min "+min);
+    // console.log(zoneTime);
     const job = schedule.scheduleJob(sheduleDate, ()=>{
-        console.log(sheduleDate);
-        res.send(subscribersList);
+        let transporter = nodemailer.createTransport(smtpTransport({
+            service: 'gmail',
+            host: 'smtp.gmail.com',
+            auth: {
+              user: reqdata.user,
+              pass: reqdata.password
+            }
+          }));
+        for(let i=0;i<subscribersList.length;i++){
+        let mailOptions = {
+        from: 'patelshivam251097@gmail.com',
+        to: subscribersList[i].email,
+        subject: reqdata.subject,
+        html: reqdata.html
+        };
+        
+        transporter.sendMail(mailOptions, function(err, res){
+            if (err) {
+              console.log(err);
+            } else {
+              console.log('Email sent: ' + res.response);
+            }
+          });
+        }
+        res.send("Mail Sent successfully to all the Subscribers!");
     })
 })
 
