@@ -22,20 +22,27 @@ app.get('/',(req,res)=>{
 
 app.post('/sendmail',(req,res)=>{
     var reqdata = req.body;
-    let transporter = nodemailer.createTransport(smtpTransport({
-        service: 'gmail',
-        host: 'smtp.gmail.com',
-        auth: {
-          // user: reqdata.user,
-          // pass: reqdata.password
-          type: "OAuth2",
-          user: reqdata.user, 
-          clientId: reqdata.clientId,
-          clientSecret: reqdata.clientSecret,
-          refreshToken: reqdata.refreshToken,
-          accessToken: reqdata.accessToken
-        }
-      }));
+    var transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: reqdata.user,
+        pass: reqdata.password
+      }
+    });
+    // let transporter = nodemailer.createTransport(smtpTransport({
+    //     service: 'Gmail',
+    //     // host: 'smtp.gmail.com',
+    //     auth: {
+    //       user: reqdata.user,
+    //       pass: reqdata.password
+    //       // type: "OAuth2",
+    //       // user: reqdata.user, 
+    //       // clientId: reqdata.clientId,
+    //       // clientSecret: reqdata.clientSecret,
+    //       // refreshToken: reqdata.refreshToken,
+    //       // accessToken: reqdata.accessToken
+    //     }
+    //   }));
     for(let i=0;i<subscribersList.length;i++){
     let mailOptions = {
     from: 'patelshivam251097@gmail.com',
