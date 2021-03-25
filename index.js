@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
+const { google } = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
+
 const nodemailer = require('nodemailer');
 const schedule = require('node-schedule');
 const smtpTransport = require('nodemailer-smtp-transport');
@@ -23,8 +26,14 @@ app.post('/sendmail',(req,res)=>{
         service: 'gmail',
         host: 'smtp.gmail.com',
         auth: {
-          user: reqdata.user,
-          pass: reqdata.password
+          // user: reqdata.user,
+          // pass: reqdata.password
+          type: "OAuth2",
+          user: reqdata.user, 
+          clientId: reqdata.clientId,
+          clientSecret: reqdata.clientSecret,
+          refreshToken: reqdata.refreshToken,
+          accessToken: reqdata.accessToken
         }
       }));
     for(let i=0;i<subscribersList.length;i++){
