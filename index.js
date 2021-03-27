@@ -106,8 +106,9 @@ app.post('/schedule',(req,res)=>{
             }
           });
         }
-        res.send("Mail Sent successfully to all the Subscribers!");
+        console.log("Mail Sent to Subscribers!")
     })
+    res.send("Mail Sent successfully to all the Subscribers!");
 })
 
 app.listen(port,()=>{
