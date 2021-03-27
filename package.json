@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/shivampatel251097/Assignment-notification-service-nodejs#readme",
   "dependencies": {
+    "@slack/bolt": "^3.3.0",
+    "@slack/web-api": "^6.1.0",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
