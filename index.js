@@ -22,33 +22,18 @@ app.get('/',(req,res)=>{
 
 app.post('/sendmail',(req,res)=>{
     var reqdata = req.body;
-    var transporter = nodemailer.createTransport({
+    let transporter = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
         user: reqdata.user,
-        // pass: reqdata.password,
         type: "OAuth2",
         user: reqdata.user, 
         clientId: " 295955112744-f209rcndvedpmd4e3g28pl1iuf1rafjl.apps.googleusercontent.com",
         clientSecret: "EJH36yq0EhpEIDdte5Ikw_nN",
         refreshToken: "1//04NWM04wz7Q7MCgYIARAAGAQSNwF-L9IrlWrGg2NzgdvuUf6bF8B7V7yxLcsX22zturlaws9nlQMumer2fAkz7hctauqDzptQo50"
-        // accessToken: reqdata.accessToken
       }
     });
-    // let transporter = nodemailer.createTransport(smtpTransport({
-    //     service: 'gmail',
-    //     // host: 'smtp.gmail.com',
-    //     auth: {
-    //       user: reqdata.user,
-    //       // pass: reqdata.password,
-    //       type: "OAuth2",
-    //       user: reqdata.user, 
-    //       clientId: " 295955112744-f209rcndvedpmd4e3g28pl1iuf1rafjl.apps.googleusercontent.com",
-    //       clientSecret: "EJH36yq0EhpEIDdte5Ikw_nN",
-    //       refreshToken: "1//04NWM04wz7Q7MCgYIARAAGAQSNwF-L9IrlWrGg2NzgdvuUf6bF8B7V7yxLcsX22zturlaws9nlQMumer2fAkz7hctauqDzptQo50"
-    //       // accessToken: reqdata.accessToken
-    //     }
-    //   }));
+
     for(let i=0;i<subscribersList.length;i++){
     let mailOptions = {
     from: 'patelshivam251097@gmail.com',
@@ -94,14 +79,17 @@ app.post('/schedule',(req,res)=>{
     // console.log("min "+min);
     // console.log(zoneTime);
     const job = schedule.scheduleJob(sheduleDate, ()=>{
-        let transporter = nodemailer.createTransport(smtpTransport({
-            service: 'gmail',
-            host: 'smtp.gmail.com',
-            auth: {
-              user: reqdata.user,
-              pass: reqdata.password
-            }
-          }));
+      let transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          user: reqdata.user,
+          type: "OAuth2",
+          user: reqdata.user, 
+          clientId: " 295955112744-f209rcndvedpmd4e3g28pl1iuf1rafjl.apps.googleusercontent.com",
+          clientSecret: "EJH36yq0EhpEIDdte5Ikw_nN",
+          refreshToken: "1//04NWM04wz7Q7MCgYIARAAGAQSNwF-L9IrlWrGg2NzgdvuUf6bF8B7V7yxLcsX22zturlaws9nlQMumer2fAkz7hctauqDzptQo50"
+        }
+      });
         for(let i=0;i<subscribersList.length;i++){
         let mailOptions = {
         from: 'patelshivam251097@gmail.com',
