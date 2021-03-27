@@ -108,7 +108,7 @@ app.post('/schedule',(req,res)=>{
         }
         console.log("Mail Sent to Subscribers!")
     })
-    res.send("Mail Sent successfully to all the Subscribers!");
+    res.send("Cron job sheduled successfully mail be sent to all the Subscribers at sheduled time!");
 })
 
 app.listen(port,()=>{
