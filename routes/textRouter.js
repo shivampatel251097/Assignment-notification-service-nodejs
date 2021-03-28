@@ -24,7 +24,7 @@ textRouter.post('/',(req,res)=>{
       .done();
     }
     res.send("Text message is sent successfully to all the Subscribers!");
-  })
+})
 
 textRouter.post('/schedule',(req,res)=>{
 

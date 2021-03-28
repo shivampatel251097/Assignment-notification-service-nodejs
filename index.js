@@ -3,7 +3,6 @@ const app = express();
 const bodyParser = require('body-parser');
 require('dotenv').config()
 
-
 //Routers
 var slackRouter = require('./routes/slackRouter');
 var textRouter = require('./routes/textRouter');
